@@ -54,41 +54,26 @@
   <!-- Lead Capture Form -->
   <section id="lead-form" class="py-12 px-4 max-w-6xl mx-auto">
     <h2 class="text-3xl font-bold text-center mb-8">Book Now!</h2>
-    <p class="text-center mb-6">Sign up to book you medecine and start your journey to better health.</p>
+    <p class="text-center mb-6">Sign up to book your medicine and start your journey to better health.</p>
     <div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
-      <div action="#" class="space-y-4">
+      <form action="https://formspree.io/f/mqableld" method="POST" class="space-y-4">
         <div>
           <label for="name" class="block text-sm font-medium">Name</label>
           <input type="text" id="name" name="name" class="w-full p-2 border rounded-lg" placeholder="Your Name" required>
         </div>
         <div>
-          <label for="email" class="block text-sm font-medium">Contact Number</label>
-          <input type="email" id="email" name="email" class="w-full p-2 border rounded-lg" placeholder="Your Contact Number" required>
+          <label for="contact" class="block text-sm font-medium">Contact Number</label>
+          <input type="tel" id="contact" name="contact" class="w-full p-2 border rounded-lg" placeholder="Your Contact Number" required>
         </div>
-        <button onclick="submitForm()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Submit</button>
-      </div>
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Submit</button>
+      </form>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-green-600 text-white py-6 text-center">
-    <p>&copy; 2025 SJ Enterprises. All rights reserved.</p>
+    <p>© 2025 SJ Enterprises. All rights reserved.</p>
     <p>Contact: <a href="mailto:info@yourbusines.com" class="underline">sjenterprises@gmail.com</a></p>
   </footer>
-
-  <script>
-    function submitForm() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      if (name && email) {
-        alert('Thank you, ' + name + '! We’ll send more details to you number  ' + email);
-        // In a real setup, send form data to your email service (e.g., Mailchimp API)
-        document.getElementById('name').value = '';
-        document.getElementById('email').value = '';
-      } else {
-        alert('Please fill out all fields.');
-      }
-    }
-  </script>
 </body>
 </html>
