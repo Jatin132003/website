@@ -127,28 +127,28 @@
   <!-- Benefits Section -->
   <section class="py-16 px-4 max-w-6xl mx-auto" id="benefits">
     <h2 class="text-4xl font-bold text-center mb-12 text-purple-800 bounce-in">Benefits of Karela Jamun & Neem Powder</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-1 slide-in">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="benefits-grid">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-1">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Stimulates Insulin Production</h3>
         <p>Encourages the pancreas to naturally produce insulin, helping to regulate blood sugar levels effectively.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-2 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-2">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Skin Health</h3>
         <p>Enhances skin clarity and reduces acne by promoting a healthier complexion.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-3 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-3">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Detoxification</h3>
         <p>Promotes body detoxification by cleansing the liver and purifying the blood.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-1 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-1">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Digestive Support</h3>
         <p>Improves digestion and alleviates gastrointestinal issues, enhancing gut health.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-2 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-2">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Blood Sugar Control</h3>
         <p>Helps regulate blood sugar levels, supporting diabetes management naturally.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-3 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-3">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Immunity Booster</h3>
         <p>Strengthens the immune system, protecting against infections and promoting overall health.</p>
       </div>
@@ -158,16 +158,16 @@
   <!-- Blood Pressure Section -->
   <section class="bg-gray-100 py-16 px-4 max-w-6xl mx-auto" id="blood-pressure">
     <h2 class="text-4xl font-bold text-center mb-12 text-purple-800 bounce-in">Also Supports Healthy Blood Pressure</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-1 slide-in">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="blood-pressure-grid">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-1">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Improves Circulation</h3>
         <p>Enhances blood flow, helping to maintain optimal blood pressure levels naturally.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-2 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-2">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Reduces Stress</h3>
         <p>Contains adaptogenic herbs like Ashwagandha to lower stress, supporting blood pressure regulation.</p>
       </div>
-      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-3 slide-in">
+      <div class="bg-white p-8 rounded-xl shadow-lg hover-scale stagger-3">
         <h3 class="text-2xl font-semibold mb-3 text-purple-700">Supports Heart Health</h3>
         <p>Promotes cardiovascular health with natural ingredients, aiding in blood pressure management.</p>
       </div>
@@ -336,19 +336,22 @@
       });
     });
 
-    // Scroll-triggered animations
+    // Scroll-triggered animations (reapply on every scroll)
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.slide-in').forEach((card, index) => {
-            setTimeout(() => card.classList.add('slide-in'), index * 200);
-          });
-          observer.unobserve(entry.target);
+          const cards = entry.target.querySelectorAll('.stagger-1, .stagger-2, .stagger-3');
+          cards.forEach(card => card.classList.remove('slide-in')); // Reset animation
+          setTimeout(() => {
+            cards.forEach((card, index) => {
+              setTimeout(() => card.classList.add('slide-in'), index * 200);
+            });
+          }, 100); // Slight delay to ensure reset
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('#benefits, #blood-pressure, #testimonials, #reviews').forEach(section => observer.observe(section));
+    document.querySelectorAll('#benefits-grid, #blood-pressure-grid, #testimonials, #reviews').forEach(section => observer.observe(section));
 
     // Testimonials Carousel
     let currentIndex = 0;
@@ -378,7 +381,7 @@
 
     setInterval(nextSlide, 5000); // Auto-scroll every 5 seconds
 
-    // Particle Effect
+    // Particle Effect (Permanent)
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -397,14 +400,13 @@
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
-        this.opacity = Math.random();
+        this.opacity = 0.5 + Math.random() * 0.5; // Fixed opacity range
       }
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
         if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
         if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
-        this.opacity = Math.max(0, this.opacity - 0.005);
       }
       draw() {
         ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
@@ -422,7 +424,6 @@
       for (let particle of particles) {
         particle.update();
         particle.draw();
-        if (particle.opacity <= 0) particle = new Particle();
       }
       requestAnimationFrame(animateParticles);
     }
