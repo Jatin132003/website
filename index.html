@@ -9,7 +9,6 @@
   <title>Karela Jamun & Neem Powder | ShreeJee</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -17,10 +16,13 @@
       overflow-x: hidden;
     }
     .bg-hero {
+      background-image: url('path/to/product-image.jpg'); /* Replace with actual image */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       position: relative;
       height: 100vh;
       overflow: hidden;
-      background-color: #6b46c1; /* Fallback color */
     }
     .parallax {
       background-position: center calc(50% + 20px);
@@ -41,9 +43,9 @@
       to { transform: translateX(0); opacity: 1; }
     }
     @keyframes bounceIn {
-      0% { transform: scale(0.8); opacity: 0; translate: 0 -50px; }
-      60% { transform: scale(1.1); opacity: 1; translate: 0 10px; }
-      100% { transform: scale(1); translate: 0 0; }
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
     }
     .fade-in {
       animation: fadeIn 1s ease-in-out;
@@ -52,7 +54,7 @@
       animation: slideIn 0.8s ease-out;
     }
     .bounce-in {
-      animation: bounceIn 1.2s ease-out forwards;
+      animation: bounceIn 1.2s ease-out;
     }
     .stagger-1 { animation-delay: 0.1s; }
     .stagger-2 { animation-delay: 0.3s; }
@@ -126,27 +128,6 @@
       height: 100%;
       pointer-events: none;
     }
-    .glowing-border {
-      box-shadow: 0 0 10px #10b981, 0 0 20px #10b981, 0 0 30px #10b981;
-      border-radius: 10px;
-    }
-    .herbal-icon {
-      position: absolute;
-      opacity: 0;
-      animation: fadeIn 2s ease-in-out infinite alternate;
-    }
-    .herbal-icon:nth-child(1) { top: 10%; left: 10%; }
-    .herbal-icon:nth-child(2) { top: 20%; right: 10%; }
-    .herbal-icon:nth-child(3) { bottom: 20%; left: 15%; }
-    .herbal-icon:nth-child(4) { bottom: 10%; right: 15%; }
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-    .float {
-      animation: float 3s ease-in-out infinite;
-    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -177,20 +158,8 @@
   <header class="bg-hero bg-purple-700 text-white py-20 text-center relative" id="hero">
     <canvas id="particleCanvas"></canvas>
     <div class="absolute inset-0 bg-purple-900 opacity-50"></div>
-    <div class="relative z-10 h-full flex items-center justify-center">
-      <model-viewer 
-        src="Picsart_25-06-18_17-46-09-170.glb" 
-        alt="Karela Jamun & Neem Powder 3D Model" 
-        auto-rotate 
-        camera-controls 
-        style="width: 100%; height: 80%; max-width: 600px; animation: bounceIn 1.5s ease-out forwards;" 
-        class="glowing-border">
-      </model-viewer>
-      <img src="https://via.placeholder.com/50" alt="Herbal Icon 1" class="herbal-icon float" style="animation-delay: 0.2s;">
-      <img src="https://via.placeholder.com/50" alt="Herbal Icon 2" class="herbal-icon float" style="animation-delay: 0.4s;">
-      <img src="https://via.placeholder.com/50" alt="Herbal Icon 3" class="herbal-icon float" style="animation-delay: 0.6s;">
-      <img src="https://via.placeholder.com/50" alt="Herbal Icon 4" class="herbal-icon float" style="animation-delay: 0.8s;">
-      <div class="text-center mt-8">
+    <div class="relative z-10 h-full flex items-center">
+      <div>
         <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Karela Jamun & Neem Powder</h1>
         <p class="text-xl md:text-2xl mb-6">by ShreeJee – Naturally Stimulate Insulin Production to Balance Blood Sugar</p>
         <a href="#lead-form" class="bg-green-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-green-600 transition hover-scale">Order Now</a>
