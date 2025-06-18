@@ -17,12 +17,11 @@
     }
     .bg-hero {
       background-image: url('Picsart_25-06-18_17-46-09-170 (1).jpg'); /* Ensure image is 1280x1920px */
-      background-size: 100% auto; /* Adjusts width to container, maintains aspect ratio */
-      background-position: center;
+      background-size: cover; /* Covers the section while maintaining aspect ratio */
+      background-position: center; /* Centers the image to keep jar and text visible */
       background-repeat: no-repeat;
-      background-attachment: fixed;
       position: relative;
-      min-height: 100vh; /* Minimum height to ensure visibility */
+      min-height: 100vh; /* Full viewport height as default */
       overflow: hidden;
     }
     .parallax {
@@ -116,19 +115,19 @@
       .bg-hero {
         background-size: cover; /* Full cover for mobile */
         background-attachment: scroll; /* Disable fixed for mobile performance */
-        min-height: 70vh; /* Adjusted for mobile screens */
+        min-height: 70vh; /* Adjusted for mobile screens to show full image */
       }
     }
     @media (min-width: 768px) and (max-width: 1024px) {
       .bg-hero {
-        background-size: 90% auto; /* Maintain aspect ratio for tablets */
-        min-height: 80vh;
+        background-size: cover; /* Maintain aspect ratio for tablets */
+        min-height: 80vh; /* Adjusted for tablet screens */
       }
     }
     @media (min-width: 1025px) {
       .bg-hero {
-        background-size: 90% auto; /* Full width for laptops */
-        min-height: 100vh;
+        background-size: cover; /* Full coverage for laptops */
+        min-height: 100vh; /* Full viewport height for laptops */
       }
     }
     .error {
