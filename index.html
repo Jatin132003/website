@@ -16,9 +16,10 @@
       overflow-x: hidden;
     }
     .bg-hero {
-      background-image: url('Picsart_25-06-18_17-46-09-170.jpg'); /* Replace with actual image */
-      background-size: cover;
+      background-image: url('Picsart_25-06-18_17-46-09-170.jpg'); /* Ensure image is 1280x1920px */
+      background-size: contain; /* Ensures full image visibility */
       background-position: center;
+      background-repeat: no-repeat;
       background-attachment: fixed;
       position: relative;
       height: 100vh;
@@ -111,6 +112,15 @@
       }
       .sticky-nav.scrolled .nav-links {
         display: none;
+      }
+      .bg-hero {
+        background-size: cover; /* Switch to cover for mobile if needed */
+        background-attachment: scroll; /* Disable fixed for mobile performance */
+      }
+    }
+    @media (min-width: 768px) {
+      .bg-hero {
+        background-size: contain; /* Maintain full image on larger screens */
       }
     }
     .error {
